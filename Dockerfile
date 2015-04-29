@@ -20,7 +20,7 @@ ADD ./files/rattic.conf /opt/local.dist.cfg
 # Install dependencies for both rattic and gunicorn
 RUN cd /opt/rattic/ && pip install -r requirements-base.txt
 RUN pip install gevent gunicorn logstash-formatter
-COPY ./files/gunicorn-logging.config /opt/rattic/logging.config
+COPY ./files/gunicorn-logging.conf /opt/rattic/logging.config
 
 # Copy run script
 ADD ./files/init_and_gunicorn.sh /opt/rattic/run.sh
