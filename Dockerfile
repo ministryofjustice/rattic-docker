@@ -15,7 +15,7 @@ ADD https://github.com/tildaslash/RatticWeb/archive/v${RATTIC_VERSION}.tar.gz /o
 RUN mkdir -p /opt/rattic && tar xvfz /opt/rattic.tar.gz -C /opt/rattic --strip-components=1
 
 # Copy config
-ADD ./files/rattic.cfg /opt/local.dist.cfg
+ADD ./files/rattic.conf /opt/local.dist.cfg
 
 # Install dependencies for both rattic and gunicorn
 RUN cd /opt/rattic/ && pip install -r requirements-base.txt
