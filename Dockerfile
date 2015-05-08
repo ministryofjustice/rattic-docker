@@ -3,7 +3,7 @@ FROM ubuntu:precise
 # Install dependencies
 RUN apt-get update &&  \
     DEBIAN_FRONTEND=noninteractive apt-get -y install unzip python python-pip python-dev libsqlite3-dev \
-    libcurl4-openssl-dev libldap2-dev libsasl2-dev libxml2-dev libxslt-dev gcc nginx-light supervisor && \
+    libcurl4-openssl-dev libldap2-dev libsasl2-dev libxml2-dev libxslt-dev gcc nginx-light supervisor sqlite3 && \
     apt-get clean && \
     rm /var/lib/apt/lists/*_*
 
