@@ -10,4 +10,6 @@ if [ ! -f ${RATTIC_CONFIG_PATH} ]; then
   echo "ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'rattic.service.dsd.io']" >> /opt/rattic/ratticweb/settings.py
 fi
 
+env > /dev/shm/env.txt
+
 gunicorn ratticweb.wsgi -b 127.0.0.1:8000 -k gevent --log-config logging.config
