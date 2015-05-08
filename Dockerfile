@@ -17,7 +17,7 @@ RUN mkdir -p /opt/rattic && tar xvfz /opt/rattic.tar.gz -C /opt/rattic --strip-c
 # Copy config
 ADD ./files/rattic.conf /opt/local.dist.cfg
 
-# Install dependencies for both rattic and gunicorn 
+# Install dependencies for both rattic and gunicorn
 RUN cd /opt/rattic/ && pip install -r requirements-base.txt
 RUN pip install gevent gunicorn logstash-formatter
 COPY ./files/gunicorn_logging.conf /opt/rattic/logging.config
@@ -33,6 +33,9 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 # Copy the nginx and supervisord configuration
 COPY ./files/nginx.conf /etc/nginx/nginx.conf
 COPY ./files/supervisord.conf /etc/supervisor/supervisord.conf
+
+# Install a 3-hourly cron job to do backups
+echo '* */3 * * * root cd /opt/rattic && /usr/bin/python manage.py backup' > /etc/crontab
 
 # Copy supervisor config
 EXPOSE 80
