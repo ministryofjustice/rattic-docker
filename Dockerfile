@@ -35,7 +35,7 @@ COPY ./files/nginx.conf /etc/nginx/nginx.conf
 COPY ./files/supervisord.conf /etc/supervisor/supervisord.conf
 
 # Install a 3-hourly cron job to do backups
-echo '* */3 * * * root cd /opt/rattic && /usr/bin/python manage.py backup' > /etc/crontab
+RUN echo '* */3 * * * root cd /opt/rattic && /usr/bin/python manage.py backup' > /etc/crontab
 
 # Copy supervisor config
 EXPOSE 80
