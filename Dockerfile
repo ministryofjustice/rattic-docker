@@ -34,8 +34,8 @@ RUN ln -sf /dev/stderr /var/log/nginx/error.log
 COPY ./files/nginx.conf /etc/nginx/nginx.conf
 COPY ./files/supervisord.conf /etc/supervisor/supervisord.conf
 
-# Install a 3-hourly cron job to do backups
-RUN echo '* */3 * * * root cd /opt/rattic && env - `cat /dev/shm/env.txt` /usr/bin/python manage.py backup' > /etc/crontab
+# Run the backup command at 4:30
+RUN echo '30 4 * * * root cd /opt/rattic && env - `cat /dev/shm/env.txt` /usr/bin/python manage.py backup' > /etc/crontab
 
 # Copy supervisor config
 EXPOSE 80
